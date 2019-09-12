@@ -1,35 +1,37 @@
- import React, { Component } from "react";
+import React, { Component } from "react";
 import BookSearch from "../components/Search";
-import BookResult from "../components/Results"; 
-import Jumbotron from "../components/Jumbotron"
-import API from "../utils/API";  
+import BookResult from "../components/Results";
+import Jumbotron from "../components/Jumbotron";
+import API from "../utils/API";
 
 class Search extends Component {
-    
-    state = {
-        searchTerm: "", 
-        book:[], 
-    };
+  state = {
+    searchTerm: "",
+    book: []
+  };
 
-    componentDidMount () {
-        API.basicSearch()
-        .then (res => this.setState( { books: res.data.message } ))
-        .catch (err => console.log (err)) 
-    }
+  componentDidMount() {
+    console.log("mounted")
+    API.basicSearch()
+      .then(res => {
+        console.log(res.data)  
+        this.setState({ books: res.data.message })})
+      .catch(err => console.log(err));
+  }
 
-    findBook = () => {
-       
-        
-    } 
+  onSearch (searchTerm) {
+    console.log(searchTerm)
+  }
 
-    render () {
-        return (
-        <div className="container">
+  render() {
+    return (
+      <div className="container">
         <Jumbotron />
-        <BookSearch /> 
+        <BookSearch onSearch={this.onSearch} />
         <BookResult />
-        </div>
-    )
-}}
+      </div>
+    );
+  }
+}
 
-export default Search; 
+export default Search;
