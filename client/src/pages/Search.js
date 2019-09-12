@@ -12,13 +12,14 @@ class Search extends Component {
     };
 
     componentDidMount () {
-        console.log("Mounted"); 
+        API.basicSearch()
+        .then (res => this.setState( { books: res.data.message } ))
+        .catch (err => console.log (err)) 
     }
 
     findBook = () => {
-        API.findbooks()
+       
         
-
     } 
 
     render () {
