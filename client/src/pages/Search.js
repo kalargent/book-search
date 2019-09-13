@@ -15,18 +15,10 @@ class Search extends Component {
     API.basicSearch()
       .then(res => {
         console.log(res.data)  
-        this.setState({ books: res.data.message })})
-      .catch(err => console.log(err));
-  }
+        this.setState({ book: res.data })
+        })
 
-  onSearch (searchTerm) {
-    console.log("i'm searching")
-    console.log(searchTerm)
-    API.findbooks()
-    .then(res => {
-        console.log(res.data)
-    }
-        )
+      .catch(err => console.log(err));
   }
 
   render() {
