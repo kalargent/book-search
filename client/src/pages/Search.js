@@ -20,7 +20,13 @@ class Search extends Component {
   }
 
   onSearch (searchTerm) {
+    console.log("i'm searching")
     console.log(searchTerm)
+    API.findbooks()
+    .then(res => {
+        console.log(res.data)
+    }
+        )
   }
 
   render() {

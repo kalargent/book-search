@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "../../utils/API";
 
 class BookSearch extends Component {
   constructor(props) {
@@ -16,6 +17,16 @@ class BookSearch extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.value);
+
+    API.findbooks(this.state.value)
+        .then(res=> {
+            if (res.data.status === "error"){
+                throw new Error (res.data); 
+            }
+            console.log(res.data)
+            this.setState({ results: res.data, error: ""})
+        })
+        .catch(err => this.setState({error: err.message}))
   }
 
   render() {
